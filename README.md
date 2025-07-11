@@ -145,7 +145,7 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
 - **Clone application  from GitHub**: 
 
   ```bash
-   cd /var/www/html
+   cd /home/ubuntu
    git clone https://github.com/linckon/student-management-app.git
   ```
   Go to backend project directory and update the MySql database ConnectionString
@@ -168,9 +168,16 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
   ```bash
    cd student-management-app/student-be
    mvn clean install -DskipTests
+   cd target/
   ```
 
-  after making .jar file move your jar file to `mv student-0.0.1-SNAPSHOT.jar /var/www/html`
+  - after making .jar file move your jar file to `mv student-0.0.1-SNAPSHOT.jar /var/www/html`
+
+  - Now,run it with java -jar student-0.0.1-SNAPSHOT.jar. The app should start on the default port (usually 8080).
+
+  - To keep it running in the background, use nohup java -jar student-0.0.1-SNAPSHOT.jar &
+  
+  - For a more robust setup, turn it into a system service so it starts on boot and restarts if it crashes.
 
   - **Create Systemd Service**: Create a service file for your application.
 
@@ -209,9 +216,27 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
 
   ```bash
   sudo systemctl daemon-reload
-  sudo systemctl start your-app
-  sudo systemctl enable your-app
+  sudo systemctl start student-backend.service
+  sudo systemctl enable student-backend.service
+  systemctl status student-backend.service
   ```
+
+- **Health Check Endpoint**: 
+Verify the server is running and healthy by calling the health check endpoint.
+
+  Endpoint:
+
+  GET /api/health
+
+  ```bash
+  curl http://<ip>:8080/api/health
+  ```
+
+  Expected Response:
+
+    OK  
+
+    The server will respond with OK and HTTP status code 200 if it is up and running.
 
 ### 7. Install Node.js and Build Angular Application
 
@@ -244,37 +269,40 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
   sudo mv dist /var/www/html
   ```
 
-### 8. Configure Nginx
+### 8. Configure NGINX to Serve Angular Application
 
-- Create a configuration file for your Angular application.
+- Navigate to the NGINX configuration directory:
 
   ```bash
-  sudo vim /etc/nginx/sites-available/student-frontend
+  cd /etc/nginx/sites-available/
+  ```
+- Open the default NGINX configuration file:
+
+ ```bash
+  sudo vim default
   ```
 
-  - **Nginx Configuration**:
-
-    ```nginx
-    server {
-        listen 80;
-        server_name your-ec2-public-dns;
-
-        location / {
-            root /var/www/html/dist/student-frontend;
-            index index.html index.htm;
-            try_files $uri $uri/ /index.html;
-        }
-    }
-    ```
-
-- **Enable Configuration and Restart Nginx**:
+- Update the configuration to point to your Angular application's build directory.
+Replace the existing root path with the path to your Angular app’s dist folder. For example:
 
   ```bash
-  sudo ln -s /etc/nginx/sites-available/angular-app /etc/nginx/sites-enabled/
-  sudo nginx -t
+  root /var/www/html/dist/student-fontend;
+  ```
+
+  - Save the file and restart NGINX:
+
+  ```bash
   sudo systemctl restart nginx
   ```
+ 
+### 9. Access the Application
+
+After configuring NGINX and starting the server, open your web browser and navigate to your server’s address (for example, http://your-server-ip/).
+You should see the Student Entry user interface.
+
+You can now perform all CRUD (Create, Read, Update, Delete) operations successfully through the UI.
+
 
 ---
 
-This guide provides a structured approach to deploying your applications on an Ubuntu 22.04 EC2 instance. Follow each step carefully to ensure a successful deployment.
+This guide provides a structured approach to deploying your applications on an Ubuntu Server on EC2 instance. Follow each step carefully to ensure a successful deployment.
