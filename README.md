@@ -302,6 +302,11 @@ You should see the Student Entry user interface.
 
 You can now perform all CRUD (Create, Read, Update, Delete) operations successfully through the UI.
 
+## Application Screenshots
+
+![Student Entry UI](screenshots/list0.png) 
+![Add Student](screenshots/create.png)  
+![All Student](screenshots/list1.png)  
 
 ---
 
