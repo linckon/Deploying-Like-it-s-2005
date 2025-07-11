@@ -6,7 +6,8 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
 
 ## Prerequisites
 
-- **AWS EC2 Instance**: Ensure you have an EC2 instance running Ubuntu 22.04 or  with appropriate security groups allowing port 22,80 and 8080.
+- **AWS EC2 Instance**: Ensure you have an EC2 instance running Ubuntu 22.04 or later, with security groups configured to allow inbound traffic on ports 22 (SSH), 80 (HTTP), and 8080 (application access).
+- **Local Virtual Machine**: Alternatively, you can set up a local VM (using tools like VirtualBox, VMware, or Hyper-V) running Ubuntu 22.04 or later on your own computer. Make sure to configure the VM’s network settings to allow access to ports 22, 80, and 8080 from your host machine or local network.
 - **Java**: OpenJDK 17 or later.
 - **MySQL**: MySQL server installed and configured.
 - **Node.js and npm**: Required for building the Angular application.
@@ -17,6 +18,9 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
 ## Deployment Steps
 
 ### 1. Set Up the EC2 Instance
+
+- **Deployment Environment**:
+For this deployment, an AWS EC2 instance running Ubuntu 22.04 (or later) will be used as the server environment.
 
 - **Launch an EC2 Instance**: Use the AWS Management Console to launch an Ubuntu 22.04 instance.
 - **Connect to the Instance**: SSH into your EC2 instance using your key pair.
