@@ -6,7 +6,7 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
 
 ## Prerequisites
 
-- **AWS EC2 Instance**: Ensure you have an EC2 instance running Ubuntu 22.04 with appropriate security groups allowing HTTP, HTTPS, and SSH access.
+- **AWS EC2 Instance**: Ensure you have an EC2 instance running Ubuntu 22.04 or  with appropriate security groups allowing port 22,80 and 8080.
 - **Java**: OpenJDK 17 or later.
 - **MySQL**: MySQL server installed and configured.
 - **Node.js and npm**: Required for building the Angular application.
@@ -35,7 +35,7 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
 
 - **Install OpenJDK**: Install Java Development Kit.
 
-  1. Visit the [downloads](https://jdk.java.net/archive/) page to obtain the latest build version link. Then, use the following wget command to download the package. Here’s an example of downloading OpenJDK 18 versio.
+  1. Visit the [downloads](https://jdk.java.net/archive/) page to obtain the latest build version link. Then, use the following wget command to download the package. Here’s an example of downloading OpenJDK 18 version.
 
   ```bash
   wget https://download.java.net/java/GA/jdk18/43f95e8614114aeaa8e8a5fcf20a682d/36/GPL/openjdk-18_linux-x64_bin.tar.gz
