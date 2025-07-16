@@ -158,12 +158,12 @@ For this deployment, an AWS EC2 instance running Ubuntu 22.04 (or later) will be
 
   ```bash
    cd /home/ubuntu
-   git clone https://github.com/linckon/student-management-app.git
+   git clone https://github.com/linckon/Deploying-Like-it-s-2005.git
   ```
   Go to backend project directory and update the MySql database ConnectionString
 
   ```bash
-  cd student-management-app/api
+  cd Deploying-Like-it-s-2005/api
   sudo vim src/main/resources/application.properties
   ```
   
