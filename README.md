@@ -4,6 +4,14 @@ This document provides a comprehensive guide for deploying a Java Spring Boot ap
 
 ---
 
+## Application Screenshots
+
+![Student Entry UI](docs/screenshots/list0.png) 
+![Add Student](docs/screenshots/create.png)  
+![All Student](docs/screenshots/list1.png) 
+
+---
+
 ## Prerequisites
 
 - **AWS EC2 Instance**: Ensure you have an EC2 instance running Ubuntu 22.04 or later, with security groups configured to allow inbound traffic on ports 22 (SSH), 80 (HTTP), and 8080 (application access).
@@ -155,7 +163,7 @@ For this deployment, an AWS EC2 instance running Ubuntu 22.04 (or later) will be
   Go to backend project directory and update the MySql database ConnectionString
 
   ```bash
-  cd student-management-app/student-be
+  cd student-management-app/api
   sudo vim src/main/resources/application.properties
   ```
   
@@ -170,7 +178,7 @@ For this deployment, an AWS EC2 instance running Ubuntu 22.04 (or later) will be
   Build the Spring Boot Application:
 
   ```bash
-   cd student-management-app/student-be
+   cd student-management-app/api
    mvn clean install -DskipTests
    cd target/
   ```
@@ -290,7 +298,7 @@ Verify the server is running and healthy by calling the health check endpoint.
 Replace the existing root path with the path to your Angular app’s dist folder. For example:
 
   ```bash
-  root /var/www/html/dist/student-fontend;
+  root /var/www/html/dist/client;
   ```
 
   - Save the file and restart NGINX:
@@ -305,13 +313,7 @@ After configuring NGINX and starting the server, open your web browser and navig
 You should see the Student Entry user interface.
 
 You can now perform all CRUD (Create, Read, Update, Delete) operations successfully through the UI.
-
-## Application Screenshots
-
-![Student Entry UI](screenshots/list0.png) 
-![Add Student](screenshots/create.png)  
-![All Student](screenshots/list1.png)  
-
+ 
 ---
 
 This guide provides a structured approach to deploying your applications on an Ubuntu Server on EC2 instance. Follow each step carefully to ensure a successful deployment.
